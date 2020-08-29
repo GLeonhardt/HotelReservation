@@ -9,7 +9,7 @@
     @method('DELETE')
 
     <h2>{{ $room->room_identifier }}</h2>
-    <p> {{ $room->stars}}</p>
+    <p> {{ $room->stars}} stars</p>
     <p> {{ $room->hotel->name}}</p>
     <a href="/rooms/{{ $room->id }}/edit">Edit</a>
     <button type="submit">Remove</button>
