@@ -31,5 +31,5 @@ Route::get('/rooms/create', 'RoomController@create');
 Route::get('/rooms/{room}', 'RoomController@show');
 Route::get('/rooms/{room}/edit', 'RoomController@edit');
 Route::put('/rooms/{room}', 'RoomController@update');
-
+Route::delete('/rooms/{room}', 'RoomController@destroy');
 

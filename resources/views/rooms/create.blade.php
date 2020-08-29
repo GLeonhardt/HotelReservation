@@ -1,4 +1,4 @@
-
+@extends ('layout')
 
 @section ('content')
 <div>
@@ -17,7 +17,7 @@
       <p cass="Form__error">{{ $errors->first('room_identifier') }}</p>
     @enderror
 
-    <label for="stars">Choose a car:</label>
+    <label for="stars">Number of stars:</label>
 
     <select name="stars" id="stars">
         <option value="1">1</option>
