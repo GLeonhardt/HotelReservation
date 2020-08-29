@@ -8,7 +8,7 @@ class CreateRoomsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
     public function up()
@@ -16,10 +16,11 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->integer('stars', 0, 1);
+            $table->string('room_identifier');
             $table->unsignedBigInteger('hotel_id');
             $table->timestamps();
 
-            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
         });
     }
 

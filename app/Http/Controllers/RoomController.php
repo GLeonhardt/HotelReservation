@@ -14,7 +14,11 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Room::latest()->get();
+
+        return view('rooms.index', [
+            'rooms' => Room::paginate(10)
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('rooms.create');
     }
 
     /**
@@ -35,7 +39,9 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Room::create($this.validateRoom());
+
+        return redirect('/rooms');
     }
 
     /**
@@ -46,7 +52,7 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        return view('rooms.show', ['rooms' => $room]);
     }
 
     /**
@@ -69,7 +75,9 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        //
+        $room->update($this->validateRoom());
+
+        return redirect('rooms/'. $room.id);
     }
 
     /**
@@ -80,6 +88,20 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        $request->validate([
+            'id' => 'unique:reservations_rooms,room_id'
+        ]);
+        
+        $room->destroy($room->id);
+        return redirect('/rooms');
+    }
+
+
+    protected function validateRoom(){
+        return request()->validate([
+            'room_identifier' => 'required',
+            'stars' => 'required|min:1|max:5',
+            'hotel_id' => 'required|exists:hotels'
+        ]);
     }
 }
