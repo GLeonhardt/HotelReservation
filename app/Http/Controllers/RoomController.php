@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\Hotel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
@@ -12,21 +13,20 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::latest()->get();
-
         return view('rooms.index', [
-            'rooms' => Room::paginate(10)
+            'rooms' => Room::paginate(100)
         ]);
     }
 
     public function create()
     {
-        return view('rooms.create');
+        $hotels = Hotel::latest()->get();
+        return view('rooms.create', ['hotels' => $hotels]);
     }
 
     public function store(Request $request)
     {
-        Room::create($this.validateRoom());
+        Room::create($this->validateRoom());
 
         return redirect('/rooms');
     }
@@ -45,7 +45,7 @@ class RoomController extends Controller
     {
         $room->update($this->validateRoom());
 
-        return redirect('rooms/'. $room.id);
+        return redirect('rooms/'. $room->id);
     }
 
     public function destroy(Room $room)
@@ -62,11 +62,12 @@ class RoomController extends Controller
         return redirect('/rooms');
     }
 
-    protected function validateRoom(){
+    protected function validateRoom()
+    {
         return request()->validate([
             'room_identifier' => 'required',
             'stars' => 'required|min:1|max:5',
-            'hotel_id' => 'required|exists:hotels'
+            'hotel_id' => 'required|exists:hotels,id'
         ]);
     }
 }

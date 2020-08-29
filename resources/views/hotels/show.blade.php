@@ -12,6 +12,9 @@
     <p> {{ $hotel->address}}</p>
     <a href="/hotels/{{ $hotel->id }}/edit">Edit</a>
     <button type="submit">Remove</button>
+    @error('delete')
+      <p cass="Form__error">{{ $errors->first('delete') }}</p>
+    @enderror
   </form>
 </div>
 

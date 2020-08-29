@@ -10,6 +10,8 @@
       <a href="/rooms/{{$room->id}}">
         <h3> {{ $room->room_identifier }} </h3>
         <p> {{ $room->stars}}</p>
+      </a>
+      <a href="/hotels/{{$room->hotel_id}}">
         <p> {{ $room->hotel->name}}</p>
       </a>
     </li>

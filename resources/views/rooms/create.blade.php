@@ -26,8 +26,14 @@
         <option value="4">4</option>
         <option value="5">5</option>
     </select>
-    @error('stars')
-      <p cass="Form__error">{{ $errors->first('stars') }}</p>
+
+    <select name="hotel_id" id="hotel_id">
+        @foreach($hotels as $hotel)
+            <option value="{{$hotel->id}}">{{$hotel->name}}</option>
+        @endforeach
+    </select>
+    @error('hotel_id')
+      <p cass="Form__error">{{ $errors->first('hotel_id') }}</p>
     @enderror
 
     <button type="submit">Save</button>

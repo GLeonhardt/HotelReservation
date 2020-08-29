@@ -20,7 +20,9 @@ class CreateRoomsTable extends Migration
             $table->unsignedBigInteger('hotel_id');
             $table->timestamps();
 
-            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->foreign('hotel_id')
+                ->references('id')
+                ->on('hotels');
         });
     }
 
