@@ -2,11 +2,11 @@
 
 @section ('content')
 <div>
-  <h2>Create hotel</h2>
+  <h2>{{ __('hotel.create') }}</h2>
   <form method="POST" action="/hotels">
     @csrf
 
-    <label for="name">Name:</label>
+    <label for="name">{{ __('hotel.name') }}</label>
     <input
       id="name"
       name="name"
@@ -16,7 +16,7 @@
     @error('name')
       <p cass="Form__error">{{ $errors->first('name') }}</p>
     @enderror
-    <label for="address">Address:</label>
+    <label for="address">{{ __('hotel.address') }}</label>
     <input
       id="address"
       name="address"
@@ -26,7 +26,7 @@
     @error('address')
       <p cass="Form__error">{{ $errors->first('address') }}</p>
     @enderror
-    <button type="submit">Save</button>
+    <button type="submit">{{ __('general.save') }}</button>
   </form>
 
 </div>
