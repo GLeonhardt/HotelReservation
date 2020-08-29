@@ -3,14 +3,15 @@
 @section ('content')
 
 <div>
-  <a href="/hotels">Back</a>
-  <form method="POST" action="/hotels/{{ $hotel->id }}">
+  <a href="/rooms">Back</a>
+  <form method="POST" action="/rooms/{{ $room->id }}">
     @csrf
     @method('DELETE')
 
-    <h2>{{ $hotel->name }}</h2>
-    <p> {{ $hotel->address}}</p>
-    <a href="/hotels/{{ $hotel->id }}/edit">Edit</a>
+    <h2>{{ $room->room_identifier }}</h2>
+    <p> {{ $room->stars}} stars</p>
+    <p> {{ $room->hotel->name}}</p>
+    <a href="/rooms/{{ $room->id }}/edit">Edit</a>
     <button type="submit">Remove</button>
     @error('delete')
       <p cass="Form__error">{{ $errors->first('delete') }}</p>

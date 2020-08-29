@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Hotel;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 class HotelController extends Controller
 {
     public function index()
     {
         return view('hotels.index', [
-            'hotels' => Hotel::paginate(5)
+            'hotels' => Hotel::paginate(50)
         ]);
     }
 
@@ -46,7 +48,14 @@ class HotelController extends Controller
 
     public function destroy(Hotel $hotel)
     {
-        $hotel->destroy($hotel->id);
+        try{
+            $hotel->destroy($hotel->id);
+        }catch(\Exception $ex){
+            if(Str::contains($ex->getMessage(), 'foreign key constraint fails'))
+                throw ValidationException::withMessages(['delete' => 'It is not possible to delete a hotel that has registered rooms']);
+            else
+                throw ValidationException::withMessages(['delete' => $ex->getMessage()]);
+        }
 
         return redirect('/hotels');
     }

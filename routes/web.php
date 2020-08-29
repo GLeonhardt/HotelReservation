@@ -25,3 +25,11 @@ Route::get('/hotels/{hotel}/edit', 'HotelController@edit');
 Route::put('/hotels/{hotel}', 'HotelController@update');
 Route::delete('/hotels/{hotel}', 'HotelController@destroy');
 
+Route::get('/rooms', 'RoomController@index');
+Route::post('/rooms', 'RoomController@store');
+Route::get('/rooms/create', 'RoomController@create');
+Route::get('/rooms/{room}', 'RoomController@show');
+Route::get('/rooms/{room}/edit', 'RoomController@edit');
+Route::put('/rooms/{room}', 'RoomController@update');
+Route::delete('/rooms/{room}', 'RoomController@destroy');
+

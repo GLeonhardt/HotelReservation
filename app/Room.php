@@ -8,6 +8,8 @@ use App\Reservation;
 
 class Room extends Model
 {
+    protected $fillable = ['room_identifier', 'stars', 'hotel_id'];
+
     function hotel()
     {
         return $this->belongsTo(Hotel::class);

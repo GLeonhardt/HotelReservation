@@ -3,83 +3,71 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\Hotel;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
+
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('rooms.index', [
+            'rooms' => Room::paginate(100)
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $hotels = Hotel::latest()->get();
+        return view('rooms.create', ['hotels' => $hotels]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Room::create($this->validateRoom());
+
+        return redirect('/rooms');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
     public function show(Room $room)
     {
-        //
+        return view('rooms.show', ['room' => $room]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Room $room)
     {
-        //
+        return view('rooms.edit', compact('room'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Room $room)
     {
-        //
+        $room->update($this->validateRoom());
+
+        return redirect('rooms/'. $room->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Room $room)
     {
-        //
+        try{
+            $room->destroy($room->id);
+        }catch(\Exception $ex){
+            if(Str::contains($ex->getMessage(), 'foreign key constraint fails'))
+                throw ValidationException::withMessages(['delete' => 'It is not possible to delete a room that has already been booked']);
+            else
+                throw ValidationException::withMessages(['delete' => $ex->getMessage()]);
+        }
+
+        return redirect('/rooms');
+    }
+
+    protected function validateRoom()
+    {
+        return request()->validate([
+            'room_identifier' => 'required',
+            'stars' => 'required|min:1|max:5',
+            'hotel_id' => 'required|exists:hotels,id'
+        ]);
     }
 }
