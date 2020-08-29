@@ -2,8 +2,8 @@
 
 @section ('content')
 <div>
-  <a href="/hotels/create">Add hotel</a>
-  <h2>Hotels list:</h2>
+  <a href="/hotels/create">{{ __('hotel.add') }}</a>
+  <h2>{{ __('hotel.list') }}</h2>
   <ul>
     @foreach($hotels as $hotel)
     <li>

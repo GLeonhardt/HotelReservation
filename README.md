@@ -8,16 +8,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-# scripts
+### available scripts
 
-`composer install`
-`php artisan migrate:fresh --seed`
-`php artisan serve`
+- `composer install`
+- `php artisan migrate:fresh --seed`
+- `php artisan serve`
 
-access: `localhost:8000`
+access : `http://localhost:8000`
 
 
 
-## License
+### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
