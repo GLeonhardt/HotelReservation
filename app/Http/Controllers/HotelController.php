@@ -7,79 +7,55 @@ use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('hotels.index', [
+            'hotels' => Hotel::paginate(5)
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('hotels.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        Hotel::create($this->validateHotel());
+
+        return redirect('/hotels');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Hotel  $hotel
-     * @return \Illuminate\Http\Response
-     */
     public function show(Hotel $hotel)
     {
-        //
+        return view('hotels.show', [
+            'hotel' => $hotel
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Hotel  $hotel
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Hotel $hotel)
     {
-        //
+        return view('hotels.edit', compact('hotel'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Hotel  $hotel
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Hotel $hotel)
+    public function update(Hotel $hotel)
     {
-        //
+        $hotel->update($this->validateHotel());
+        return redirect('/hotels/' . $hotel->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Hotel  $hotel
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Hotel $hotel)
     {
-        //
+        $hotel->destroy($hotel->id);
+
+        return redirect('/hotels');
+    }
+
+    protected function validateHotel()
+    {
+        return request()->validate([
+            'name' => 'required',
+            'address' => 'required'
+        ]);
     }
 }
