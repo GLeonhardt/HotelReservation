@@ -7,8 +7,11 @@ use App\Room;
 
 class Hotel extends Model
 {
+    protected $fillable = ['name', 'address'];
+
     function room()
     {
         return $this->hasMany(Room::class);
     }
+
 }

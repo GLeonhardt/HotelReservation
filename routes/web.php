@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/hotels', 'HotelController@index');
+Route::post('/hotels', 'HotelController@store');
+Route::get('/hotels/create', 'HotelController@create');
+Route::get('/hotels/{hotel}', 'HotelController@show');
+Route::get('/hotels/{hotel}/edit', 'HotelController@edit');
+Route::put('/hotels/{hotel}', 'HotelController@update');
+Route::delete('/hotels/{hotel}', 'HotelController@destroy');
+
