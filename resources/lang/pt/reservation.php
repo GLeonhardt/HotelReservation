@@ -12,5 +12,5 @@ return [
     'canceled' => 'Reserva cancelada',
     'search' => 'Buscar quartos disponíveis',
     'cancel' => 'Cancelar reserva',
-
+    'select' => 'Selecionar quarto',
 ];

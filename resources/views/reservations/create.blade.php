@@ -6,7 +6,7 @@
   <form method="POST" action="/reservations">
     @csrf
 
-    <label for="name">{{ __('reservation.check_in') }}</label>
+    <label for="check_in" class="col-md-4 col-form-label text-md-right">{{ __('reservation.check_in') }}</label>
     <input
       id="check_in"
       name="check_in"
@@ -17,7 +17,7 @@
       <p cass="Form__error">{{ $errors->first('check_in') }}</p>
     @enderror
 
-  <label for="name">{{ __('reservation.check_out') }}</label>
+  <label for="check_out" class="col-md-4 col-form-label text-md-right">{{ __('reservation.check_out') }}</label>
     <input
       id="check_out"
       name="check_out"
@@ -28,20 +28,26 @@
       <p cass="Form__error">{{ $errors->first('check_out') }}</p>
     @enderror
   
-    <a onclick="searchRooms()" id="searchButton" class="btn btn-primary">{{ __('reservation.search') }}</a>
+    <a onclick="searchRooms()" id="searchButton" class="btn btn-primary float-right">{{ __('reservation.search') }}</a>
 
       @foreach($rooms as $room)
-        <input type="checkbox" id="room" name="rooms[]" value="{{ $room->id }}"/>
-          <h3>Hotel: {{$room->hotel->name}}</h3>
-          <p>{{__('hotel.address')}} {{$room->hotel->address}}</p>
-          <h3>{{__('room.room')}} {{$room->room_identifier}}</h3>
-          <p>$ {{$room->price}}</p>
+      <div class="form-group row">
+          <div class="col-md-6">
+            <label for="room" >{{ __('reservation.select') }}</label>
+            <input type="checkbox" id="room" name="rooms[]" value="{{ $room->id }}"/>
+            <h3> {{ __('room.rating') }}: {{ $room->stars}} {{ __('room.stars') }} ${{$room->price}}</h3>
+            <p>{{__('hotel.name')}} {{$room->hotel->name}} - </p>
+            <p>{{__('hotel.address')}} {{$room->hotel->address}}</p>
+            <p>{{__('room.identifier')}} {{$room->room_identifier}}</p>
+            <p></p>
+          </div>
+      </div>
       @endforeach
       @error('room')
       <p cass="Form__error">{{ $errors->first('room') }}</p>
     @enderror
 
-    <button type="submit">{{ __('general.save') }}</button>
+    <button type="submit" class="btn btn-primary float-right">{{ __('general.save') }}</button>
   </form>
 
 </div>
