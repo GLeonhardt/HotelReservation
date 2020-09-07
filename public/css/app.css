@@ -10937,19 +10937,19 @@ body {
   font-size: 84px;
 }
 
-.links > .cta {
-  background-color: #885050;
-  color: white;
-  padding: 1rem;
-  font-size: 13px;
-  border-radius: 0.3rem;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
 .m-b-md {
   margin-bottom: 30px;
+}
+
+.card {
+  color: #505050;
+}
+
+.card p {
+  margin-bottom: 0;
+}
+
+a:hover {
+  text-decoration: none;
 }
 

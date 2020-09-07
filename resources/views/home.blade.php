@@ -10,10 +10,10 @@
                 <div class="card-body">
                     <div class="links">
                         @if (Auth::user()->admin)
-                          <a href="/hotels" class="cta">Hotels</a>
-                          <a href="/rooms" class="cta">Rooms</a>
+                          <a href="/hotels" class="btn btn-primary" >Hotels</a>
+                          <a href="/rooms" class="btn btn-primary" >Rooms</a>
                         @endif
-                        <a href="/" class="cta">Reservations</a>
+                        <a href="/" class="btn btn-primary" >Reservations</a>
                     </div>
                 </div>
             </div>

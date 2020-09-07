@@ -1,19 +1,22 @@
 @extends('layouts.app')
 
 @section ('content')
-<div>
-  <a href="/hotels/create">{{ __('hotel.add') }}</a>
-  <h2>{{ __('hotel.list') }}</h2>
-  <ul>
-    @foreach($hotels as $hotel)
-    <li>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <a href="/home">{{ __('general.back') }}</a>
+      <a href="/hotels/create" class="btn btn-primary float-right" >{{ __('hotel.add') }}</a>
+      <h2>{{ __('hotel.list') }}</h2>
+      @foreach($hotels as $hotel)
       <a href="/hotels/{{$hotel->id}}">
-        <h3> {{ $hotel->name }} </h3>
-        <p> {{ $hotel->address}}</p>
+        <div class="card mt-2 p-2">
+          <h3> {{ $hotel->name }} </h3>
+          <p> {{ $hotel->address}}</p>
+        </div>
       </a>
-    </li>
-    @endforeach
-  </ul>
+      @endforeach
+    </div>
+  </div>
 </div>
 
 

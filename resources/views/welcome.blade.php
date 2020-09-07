@@ -8,7 +8,7 @@
     </div>
 
     <div class="links">
-        <a href="/home" class="cta">Reserve right now</a>
+        <a href="/home" class="btn btn-secondary" >Reserve right now</a>
     </div>
 </div>
 

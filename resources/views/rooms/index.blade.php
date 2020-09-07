@@ -1,23 +1,24 @@
 @extends('layouts.app')
 
 @section ('content')
-<div>
-  <a href="/rooms/create">Add Room</a>
-  <h2>Rooms list:</h2>
-  <ul>
-    @foreach($rooms as $room)
-    <li>
-      <a href="/rooms/{{$room->id}}">
-        <h3> {{ $room->room_identifier }} </h3>
-        <p> {{ $room->stars}}</p>
-      </a>
-      <a href="/hotels/{{$room->hotel_id}}">
-        <p> {{ $room->hotel->name}}</p>
-      </a>
-    </li>
-    @endforeach
-  </ul>
-</div>
 
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <a href="/home">{{ __('general.back') }}</a>
+      <a href="/rooms/create" class="btn btn-primary float-right" >{{ __('room.add') }}</a>
+      <h2>{{ __('room.list') }}</h2>
+      @foreach($rooms as $room)
+      <a href="/rooms/{{$room->id}}">
+        <div class="card mt-2 p-2">
+          <h3> {{ $room->room_identifier }} </h3>
+          <p> {{ $room->stars}} {{ __('room.stars') }}</p>
+          <p> {{ __('room.hotel') }}: {{ $room->hotel->name}} </p>
+        </div>
+      </a>
+      @endforeach
+    </div>
+  </div>
+</div>
 
 @endsection
