@@ -8,6 +8,9 @@ use App\Room;
 
 class Reservation extends Model
 {
+
+    protected $fillable = ['check_in', 'check_out'];
+
     function user()
     {
         return $this->belongsTo(User::class);

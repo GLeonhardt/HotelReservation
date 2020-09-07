@@ -17,14 +17,17 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->timestamp('check_in')->nullable();
             $table->timestamp('check_out')->nullable();
+            $table->decimal('total_price', 10, 2);
+            $table->boolean('canceled')->default(false);
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::create('reservations_rooms', function (Blueprint $table) {
+        Schema::create('reservation_room', function (Blueprint $table) {
             $table->id();
+//            $table->decimal('price', 10, 2);
             $table->unsignedBigInteger('reservation_id');
             $table->unsignedBigInteger('room_id');
             $table->timestamps();

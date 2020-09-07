@@ -33,3 +33,8 @@ Route::get('/rooms/{room}/edit', 'RoomController@edit');
 Route::put('/rooms/{room}', 'RoomController@update');
 Route::delete('/rooms/{room}', 'RoomController@destroy');
 
+
+Route::get('/reservations', 'ReservationController@index');
+Route::get('/reservations/create', 'ReservationController@create');
+Route::post('/reservations', 'ReservationController@store');
+Route::get('/reservations/{reservation}', 'ReservationController@show');

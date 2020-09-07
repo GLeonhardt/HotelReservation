@@ -9,6 +9,7 @@ $factory->define(Room::class, function (Faker $faker) {
     return [
         'room_identifier' => $faker->word,
         'stars' => $faker->numberBetween($min = 1, $max = 5),
+        'price' => $faker->randomFloat(2, 50, 500),
         'hotel_id' => factory(\App\Hotel::class),
     ];
 });
