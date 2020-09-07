@@ -6,5 +6,6 @@ return [
     'edit' => 'Editar hotel',
     'create' => 'Criar novo hotel',
     'name' => 'Nome:',
-    'address' => 'Endereço:'
+    'address' => 'Endereço:',
+    'error' => 'Ocorreu um erro'
 ];

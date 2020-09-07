@@ -4,9 +4,9 @@ return [
     'add' => 'Cadastrar quarto',
     'edit' => 'Editar quarto',
     'list' => 'Lista de quartos:',
-    'identifier' => 'Identificador',
+    'identifier' => 'Identificador:',
     'rating' => 'Classificação',
     'hotel' => 'Hotel',
-    'star' => 'estrela',
-    'stars' => 'estrelas',
+    'star' => 'estrela:',
+    'stars' => 'estrelas:',
 ];

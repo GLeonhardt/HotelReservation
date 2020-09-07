@@ -57,11 +57,11 @@ class HotelController extends Controller
             $hotel->destroy($hotel->id);
         }catch(\Exception $ex){
             if(Str::contains($ex->getMessage(), 'foreign key constraint fails'))
-                throw ValidationException::withMessages(['delete' => 'It is not possible to delete a hotel that has registered rooms']);
+                throw ValidationException::withMessages(['delete' => "It is not possible to delete a hotel that has registered rooms"]);
             else
                 throw ValidationException::withMessages(['delete' => $ex->getMessage()]);
         }
-
+// 
         return redirect('/hotels');
     }
 
