@@ -1,4 +1,4 @@
-@extends ('layout')
+@extends('layouts.app')
 
 @section ('content')
 <div>
@@ -28,7 +28,7 @@
       <p cass="Form__error">{{ $errors->first('check_out') }}</p>
     @enderror
   
-    <a onclick="searchRooms()" id="searchButton" class="btn btn-primary">Buscar quartos disponiveis</a>
+    <a onclick="searchRooms()" id="searchButton" class="btn btn-primary">{{ __('reservation.search') }}</a>
 
       @foreach($rooms as $room)
         <input type="checkbox" id="room" name="rooms[]" value="{{ $room->id }}"/>
@@ -50,7 +50,7 @@
 window.onload = function() {
   const urlParams = new URLSearchParams(location.search);
   const checkInParam = urlParams.get('check_in');
-  const checkOutParam = urlParams.get('check_in');
+  const checkOutParam = urlParams.get('check_out');
 
   if(checkInParam != null && checkOutParam != null){
     var a = document.getElementById('check_in');

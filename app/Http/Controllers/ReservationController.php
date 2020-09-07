@@ -19,10 +19,10 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $rooms = Room::paginate(100);
+        $reservations = Reservation::paginate(100);
 
         return view('reservations.index', [
-            'rooms' => $rooms
+            'reservations' => $reservations
         ]);
     }
 
@@ -38,12 +38,13 @@ class ReservationController extends Controller
                     ->from('reservations')
                     ->join('reservation_room', 'reservations.id','=', 'reservation_room.reservation_id')
                     ->whereColumn('room_id', 'rooms.id')
+                    ->where('canceled', 0)
                     ->where(function($query) use($check_in, $check_out) {
                         $query->where('check_in', '>', $check_in)
-                              ->where('check_in', '<', $check_out);
+                              ->where('check_in', '<=', $check_out);
                     })
                     ->orWhere(function($query) use($check_in, $check_out) {
-                        $query->where('check_out', '>', $check_in)
+                        $query->where('check_out', '>=', $check_in)
                               ->where('check_out', '<', $check_out);
                     });
                     
@@ -62,7 +63,7 @@ class ReservationController extends Controller
     {
         $this->validateReservation();
         $reservation = new Reservation(request(['check_in', 'check_out']));
-        $reservation->user_id = 1;
+        $reservation->user_id = auth()->user()->id;
         $reservation->total_price = array_sum( Room::whereIn('id', request('rooms'))->pluck('price')->toArray());
 
         $reservation->save();
@@ -72,7 +73,10 @@ class ReservationController extends Controller
 
     public function show(Reservation $reservation)
     {
-        return view('reservations.show', ['reservation' => $reservation]);
+        if($reservation->user_id == auth()->user()->id || auth()->user()->admin){
+            return view('reservations.show', ['reservation' => $reservation]);
+        }
+        abort(401);
     }
 
     public function edit(Reservation $reservation)
@@ -85,6 +89,12 @@ class ReservationController extends Controller
 
     public function destroy(Reservation $reservation)
     {
+        if($reservation->user_id == auth()->user()->id || auth()->user()->admin){
+            $reservation->canceled = true;
+            $reservation->save();
+        }else{
+            abort(401);
+        }
     }
 
     protected function validateReservation()

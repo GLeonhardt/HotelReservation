@@ -42,3 +42,4 @@ Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/create', 'ReservationController@create');
 Route::post('/reservations', 'ReservationController@store');
 Route::get('/reservations/{reservation}', 'ReservationController@show');
+Route::delete('/reservations/{reservation}', 'ReservationController@destroy');

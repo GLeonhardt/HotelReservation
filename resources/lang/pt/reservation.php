@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'list' => 'Lista de quartos disponiveis',
+    'list' => 'Lista de reservas',
     'add' => 'Criar reserva',
     'edit' => 'Editar reserva',
     'create' => 'Finalizar reserva',
@@ -10,4 +10,7 @@ return [
     'details' => 'Detalhes da sua reserva:',
     'price' => 'Valor total da reserva:',
     'canceled' => 'Reserva cancelada',
+    'search' => 'Buscar quartos disponíveis',
+    'cancel' => 'Cancelar reserva',
+
 ];

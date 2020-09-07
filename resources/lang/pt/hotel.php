@@ -7,5 +7,5 @@ return [
     'create' => 'Criar novo hotel',
     'name' => 'Nome:',
     'address' => 'Endereço:',
-    'error' => 'Deu ruim'
+    'error' => 'Ocorreu um erro'
 ];
