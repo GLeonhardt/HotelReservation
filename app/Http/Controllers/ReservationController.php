@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
+     * Display a listing of the resource.s
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $rooms = Room::paginate(100);

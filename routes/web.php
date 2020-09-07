@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
 Route::get('/hotels', 'HotelController@index');
 Route::post('/hotels', 'HotelController@store');
 Route::get('/hotels/create', 'HotelController@create');

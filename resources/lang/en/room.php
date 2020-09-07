@@ -1,10 +1,12 @@
 <?php
 
 return [
-    'list' => 'Rooms list',
     'add' => 'Add room',
     'edit' => 'Edit room',
-    'create' => 'Create new room',
-    'name' => 'Name:',
-    'address' => 'Address:'
+    'list' => 'Room list:',
+    'identifier' => 'Identifier',
+    'rating' => 'Rating',
+    'hotel' => 'Hotel',
+    'star' => 'star',
+    'stars' => 'stars',
 ];

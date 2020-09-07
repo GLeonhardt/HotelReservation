@@ -1,10 +1,12 @@
 <?php
 
 return [
-    'list' => 'Lista de quartos',
-    'add' => 'Adicionar quarto',
+    'add' => 'Cadastrar quarto',
     'edit' => 'Editar quarto',
-    'create' => 'Criar novo quarto',
-    'room' => 'Quarto:',
-    'address' => 'Endereço:'
+    'list' => 'Lista de quartos:',
+    'identifier' => 'Identificador',
+    'rating' => 'Classificação',
+    'hotel' => 'Hotel',
+    'star' => 'estrela',
+    'stars' => 'estrelas',
 ];
