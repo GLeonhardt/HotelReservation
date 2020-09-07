@@ -11,10 +11,15 @@ use Illuminate\Support\Str;
 
 class RoomController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         return view('rooms.index', [
-            'rooms' => Room::paginate(100)
+            'rooms' => Room::paginate(10)
         ]);
     }
 
