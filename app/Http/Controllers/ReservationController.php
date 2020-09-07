@@ -13,13 +13,13 @@ class ReservationController extends Controller
         $this->middleware('auth');
     }
     /**
-     * Display a listing of the resource.s
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $reservations = Reservation::paginate(100);
+        $reservations = Reservation::paginate(10);
 
         return view('reservations.index', [
             'reservations' => $reservations
