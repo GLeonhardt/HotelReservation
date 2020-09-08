@@ -6,6 +6,7 @@ use App\Hotel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class HotelController extends Controller
 {
@@ -15,7 +16,7 @@ class HotelController extends Controller
     }
     
     public function index()
-    {
+    {        
         return view('hotels.index', [
             'hotels' => Hotel::paginate(50)
         ]);
@@ -28,6 +29,7 @@ class HotelController extends Controller
 
     public function store()
     {
+        Log::info('User: '.auth()->user()->name .' Creating new Hotel: ' .request()->getContent());
         Hotel::create($this->validateHotel());
 
         return redirect('/hotels');
@@ -42,17 +44,20 @@ class HotelController extends Controller
 
     public function edit(Hotel $hotel)
     {
+        
         return view('hotels.edit', compact('hotel'));
     }
 
     public function update(Hotel $hotel)
     {
+        Log::info('User: '.auth()->user()->name .' Updating Hotel: ' .$hotel);
         $hotel->update($this->validateHotel());
         return redirect('/hotels/' . $hotel->id);
     }
 
     public function destroy(Hotel $hotel)
     {
+        Log::info('User: '.auth()->user()->name .' Deleting Hotel: ' .$hotel);
         try{
             $hotel->destroy($hotel->id);
         }catch(\Exception $ex){

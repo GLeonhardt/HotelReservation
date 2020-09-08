@@ -8,7 +8,7 @@ use App\Reservation;
 
 class Room extends Model
 {
-    protected $fillable = ['room_identifier', 'stars', 'hotel_id'];
+    protected $fillable = ['room_identifier', 'stars', 'hotel_id', 'price'];
 
     function hotel()
     {

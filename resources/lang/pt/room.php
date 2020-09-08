@@ -9,4 +9,5 @@ return [
     'hotel' => 'Hotel',
     'star' => 'estrela:',
     'stars' => 'estrelas:',
+    'price' => 'preço:',
 ];

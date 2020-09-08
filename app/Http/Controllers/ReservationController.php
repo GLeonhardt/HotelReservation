@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Reservation;
 use App\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ReservationController extends Controller
 {
@@ -61,6 +62,7 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('User: '.auth()->user()->name .' Creating new reservation: ' .request()->getContent());
         $this->validateReservation();
         $reservation = new Reservation(request(['check_in', 'check_out']));
         $reservation->user_id = auth()->user()->id;
@@ -79,16 +81,9 @@ class ReservationController extends Controller
         abort(401);
     }
 
-    public function edit(Reservation $reservation)
-    {
-    }
-
-    public function update(Request $request, Reservation $reservation)
-    {
-    }
-
     public function destroy(Reservation $reservation)
     {
+        Log::info('User: '.auth()->user()->name .' Canceling reservation: ' .$reservation);
         if($reservation->user_id == auth()->user()->id || auth()->user()->admin){
             $reservation->canceled = true;
             $reservation->save();

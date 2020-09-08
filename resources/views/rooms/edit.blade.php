@@ -21,6 +21,15 @@
               </div>
             </div>
             <div class="form-group row">
+              <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('room.price') }}</label>
+              <div class="col-md-6">
+                <input id="price" name="price" type="number" min="1" step="any" value="{{ $room->price }}" class="form-control @error('price') is-invalid @enderror" required autofocus/>
+                @error('price')
+                <p class="invalid-feedback">{{ $errors->first('price') }}</p>
+                @enderror
+              </div>
+            </div>
+            <div class="form-group row">
               <label for="stars" class="col-md-4 col-form-label text-md-right">{{ __('room.rating') }}</label>
               <div class="col-md-6">
                 <select name="stars" id="stars" class="form-control">
