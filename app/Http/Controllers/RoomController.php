@@ -7,6 +7,7 @@ use App\Hotel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 
 class RoomController extends Controller
@@ -31,6 +32,7 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('User: '.auth()->user()->name .' Creating new Room: ' .request()->getContent());
         Room::create($this->validateRoom());
 
         return redirect('/rooms');
@@ -46,8 +48,9 @@ class RoomController extends Controller
         return view('rooms.edit', compact('room'));
     }
 
-    public function update(Request $request, Room $room)
+    public function update(Room $room)
     {
+        Log::info('User: '.auth()->user()->name .' Updating Room: ' .$room);
         $room->update($this->validateRoom());
 
         return redirect('rooms/'. $room->id);
@@ -55,6 +58,7 @@ class RoomController extends Controller
 
     public function destroy(Room $room)
     {
+        Log::info('User: '.auth()->user()->name .' Deleting Room: ' .$room);
         try{
             $room->destroy($room->id);
         }catch(\Exception $ex){
@@ -72,6 +76,7 @@ class RoomController extends Controller
         return request()->validate([
             'room_identifier' => 'required',
             'stars' => 'required|min:1|max:5',
+            'price' => 'required',
             'hotel_id' => 'required|exists:hotels,id'
         ]);
     }

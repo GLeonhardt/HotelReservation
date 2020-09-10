@@ -11,6 +11,7 @@
           @method('DELETE')
           <h2>{{ $room->room_identifier }}</h2>
           <p> {{ __('room.rating') }}: {{ $room->stars}} {{ __('room.stars') }}</p>
+          <p> {{ __('room.price') }}: ${{ $room->price}}</p>
           <p> {{ __('room.hotel') }}: {{ $room->hotel->name}}</p>
           <a href="/rooms/{{ $room->id }}/edit" class="btn btn-small btn-primary">{{ __('general.edit') }}</a>
           <button type="submit" class="btn btn-small btn-danger">{{ __('general.remove') }}</button>
