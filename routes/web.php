@@ -21,21 +21,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
-Route::get('/hotels', 'HotelController@index');
-Route::post('/hotels', 'HotelController@store');
-Route::get('/hotels/create', 'HotelController@create');
-Route::get('/hotels/{hotel}', 'HotelController@show');
-Route::get('/hotels/{hotel}/edit', 'HotelController@edit');
-Route::put('/hotels/{hotel}', 'HotelController@update');
-Route::delete('/hotels/{hotel}', 'HotelController@destroy');
+Route::get('/hotels', 'HotelController@index')->middleware('admin');
+Route::post('/hotels', 'HotelController@store')->middleware('admin');
+Route::get('/hotels/create', 'HotelController@create')->middleware('admin');
+Route::get('/hotels/{hotel}', 'HotelController@show')->middleware('admin');
+Route::get('/hotels/{hotel}/edit', 'HotelController@edit')->middleware('admin');
+Route::put('/hotels/{hotel}', 'HotelController@update')->middleware('admin');
+Route::delete('/hotels/{hotel}', 'HotelController@destroy')->middleware('admin');
 
-Route::get('/rooms', 'RoomController@index');
-Route::post('/rooms', 'RoomController@store');
-Route::get('/rooms/create', 'RoomController@create');
-Route::get('/rooms/{room}', 'RoomController@show');
-Route::get('/rooms/{room}/edit', 'RoomController@edit');
-Route::put('/rooms/{room}', 'RoomController@update');
-Route::delete('/rooms/{room}', 'RoomController@destroy');
+Route::get('/rooms', 'RoomController@index')->middleware('admin');
+Route::post('/rooms', 'RoomController@store')->middleware('admin');
+Route::get('/rooms/create', 'RoomController@create')->middleware('admin');
+Route::get('/rooms/{room}', 'RoomController@show')->middleware('admin');
+Route::get('/rooms/{room}/edit', 'RoomController@edit')->middleware('admin');
+Route::put('/rooms/{room}', 'RoomController@update')->middleware('admin');
+Route::delete('/rooms/{room}', 'RoomController@destroy')->middleware('admin');
 
 
 Route::get('/reservations', 'ReservationController@index');

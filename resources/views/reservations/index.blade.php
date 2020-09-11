@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <a href="/home">{{ __('general.back') }}</a>
-      <!-- <a href="/hotels/create" class="btn btn-primary float-right" >{{ __('hotel.add') }}</a> -->
+      <a href="/reservations/create" class="btn btn-primary float-right" >{{ __('reservation.add') }}</a>
       <h2>{{ __('reservation.list') }}</h2>
       @foreach($reservations as $reservation)
       <a href="/reservations/{{$reservation->id}}">

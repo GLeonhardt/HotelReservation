@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">Create room</div>
+        <div class="card-header">{{ __('room.create') }}</div>
         <div class="card-body">
           <form method="POST" action="/rooms">
             @csrf
