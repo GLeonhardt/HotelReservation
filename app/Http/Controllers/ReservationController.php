@@ -91,7 +91,7 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         Log::info('User: '.auth()->user()->name .' Canceling reservation: ' .$reservation);
-        if($reservation->user_id == auth()->user()->id || auth()->user()->admin){
+        if($reservation->user_id == auth()->user()->id || auth()->user()->admin == 1){
             $reservation->canceled = true;
             $reservation->save();
         }else{
