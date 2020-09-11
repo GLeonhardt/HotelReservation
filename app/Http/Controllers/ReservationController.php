@@ -20,7 +20,12 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::paginate(10);
+
+        if(auth()->user()->admin ==1){
+            $reservations = Reservation::get();
+        }else{
+            $reservations = Reservation::where('user_id', auth()->user()->id)->get();
+        }
 
         return view('reservations.index', [
             'reservations' => $reservations
@@ -71,6 +76,8 @@ class ReservationController extends Controller
         $reservation->save();
 
         $reservation->room()->attach(request('rooms'));
+
+        return redirect('/reservations');
     }
 
     public function show(Reservation $reservation)
@@ -84,7 +91,7 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         Log::info('User: '.auth()->user()->name .' Canceling reservation: ' .$reservation);
-        if($reservation->user_id == auth()->user()->id || auth()->user()->admin){
+        if($reservation->user_id == auth()->user()->id || auth()->user()->admin == 1){
             $reservation->canceled = true;
             $reservation->save();
         }else{

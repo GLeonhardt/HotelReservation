@@ -20,7 +20,7 @@ class RoomController extends Controller
     public function index()
     {
         return view('rooms.index', [
-            'rooms' => Room::paginate(10)
+            'rooms' => Room::get()
         ]);
     }
 
