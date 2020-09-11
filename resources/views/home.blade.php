@@ -6,14 +6,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-
                 <div class="card-body">
                     <div class="links">
                         @if (Auth::user()->admin)
-                          <a href="/hotels" class="btn btn-primary" >Hotels</a>
-                          <a href="/rooms" class="btn btn-primary" >Rooms</a>
+                          <a href="/hotels" class="btn btn-primary" >{{ __('general.hotels') }}</a>
+                          <a href="/rooms" class="btn btn-primary" >{{ __('general.rooms') }}</a>
                         @endif
-                        <a href="/" class="btn btn-primary" >Reservations</a>
+                        <a href="/reservations" class="btn btn-primary" >{{ __('general.reservations') }}</a>
                     </div>
                 </div>
             </div>
